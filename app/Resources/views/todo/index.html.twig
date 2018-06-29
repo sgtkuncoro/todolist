@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %} {% block body %}
+<br>
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link text-info active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+            aria-selected="true">
+            <i class="fa fa-fw  fa-get-pocket"></i>Active</a>
+        <a class="nav-item nav-link text-success" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+            aria-selected="false">
+            <i class="fa fa-fw fa-check"></i>Done</a>
+        <a class="nav-item nav-link text-warning" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact"
+            aria-selected="false">
+            <i class="fa fa-fw fa-archive"></i>Archive</a>
+    </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <br>
+
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-fw fa-pencil"></i> Add
+            </button>
+        </div>
+
+        <div class="my-3 bg-white rounded box-shadow">
+            <div class="box-body no-padding">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Task</th>
+                            <th>Progress</th>
+                            <th style="width: 40px">Label</th>
+                            <th>Do</th>
+                        </tr>
+                        <tr>
+                            <td>1.</td>
+                            <td>Update software</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-red">55%</span>
+                            </td>
+                            <td>
+                                <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2.</td>
+                            <td>Clean database</td>
+                            <td>
+                                <div class="progress progress-xs">
+                                    <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-yellow">70%</span>
+                            </td>
+                            <td>
+                                <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3.</td>
+                            <td>Cron job running</td>
+                            <td>
+                                <div class="progress progress-xs progress-striped active">
+                                    <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-blue">30%</span>
+                            </td>
+                            <td>
+                                <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>Fix and squish bugs</td>
+                            <td>
+                                <div class="progress progress-xs progress-striped active">
+                                    <div class="progress-bar progress-bar-success" style="width: 90%"></div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light-blue">12%</span>
+
+                                <!-- <div class="btn-toolbar" role="toolbar" aria-label="First group">
+                                    <button type="button" class="btn btn-outline-danger btn-sm">
+                                        <i class="fa fa-fw fa-trash"></i>Delete</button>
+                                    <button type="button" class="btn btn-outline-warning btn-sm">
+                                        <i class="fa fa-fw  fa-archive"></i>Archive</button>
+                                    <button type="button" class="btn btn-outline-success btn-sm">
+                                        <i class="fa fa-fw fa-check"></i>Done</button>
+                                </div> -->
+                            </td>
+                            <td>
+                                <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Task:</label>
+                  <input type="text" class="form-control" id="task">
+                </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Description:</label>
+                  <textarea class="form-control" id="desc"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}
