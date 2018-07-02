@@ -7,7 +7,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>{% block title %} Home | TodoList{% endblock %}</title>
-  {% block stylesheets %}{% endblock %}
+
+  {% block stylesheets %} {% endblock %}
   <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
   <!-- Bootstrap core CSS -->
@@ -15,7 +16,7 @@
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/sticky-footer-navbar.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/font-awesome.min.css') }}" rel="stylesheet">
-  
+
 
   <!-- Custom styles for this template -->
 </head>
@@ -26,7 +27,7 @@
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
       <div class="container">
-        <a class="navbar-brand" href="/">Catatan</a>
+        <a class="navbar-brand" href="/">ToDoList</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -40,18 +41,16 @@
               <a class="nav-link" href="#">Service </a>
             </li>
           </ul>
-          <a class="nav-link" href="/todos" >Try it</a>
+          <a class="nav-link" href="/todos">Try it</a>
           <a class="btn btn-outline-primary" href="#">Sign up</a>
         </div>
       </div>
-      </nav>
+    </nav>
   </header>
 
   <!-- Begin page content -->
   <main role="main" class="container">
-    {% block body %}
-    
-    {% endblock %}
+    {% block body %} {% endblock %}
   </main>
 
   <!-- <footer class="footer">
@@ -60,17 +59,13 @@
     </div>
   </footer> -->
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
+  <!-- Bootstrap core JavaScript -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
 
-  <!-- {% block javascripts %}
-  
-  {% endblock %} -->
+  {% block javascripts %} {% endblock %}
 </body>
 
 </html>
