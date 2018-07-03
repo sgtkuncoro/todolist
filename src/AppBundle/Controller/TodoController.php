@@ -2,10 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use \DateTime;
 use AppBundle\Entity\Todo;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TodoController extends Controller
 {
@@ -32,17 +34,41 @@ class TodoController extends Controller
     }
 
     /**
-     * @Route("/todo/create", name="todo_create")
+     * @Route("/todo/act", name="todo_act")
      */
-    public function createAction(Request $request) {
-        return;
+    public function actAction($id=null, Request $request) {
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $todo = new Todo();
+        $name=$request->request->get('name');
+        $category=$request->request->get('category');
+        $description=$request->request->get('description');
+        $priority=$request->request->get('priority');
+        $due_date=$request->request->get('due_date');
+        $now= new \DateTime("now");
+
+        $todo->setName($name);
+        $todo->setCategory($category);
+        $todo->setDescription($description);
+        $todo->setPriority($priority);
+        $todo->setDueDate(new \DateTime($due_date));
+        $todo->setCreateDate($now);
+
+        $entityManager->persist($todo);
+        $entityManager->flush();
+
+        return new Response('Todo Saved');
+
+       
     }
 
     /**
      * @Route("/todo/edit/{id}", name="todo_edit")
      */
     public function editAction($id, Request $request) {
-        return;
+        return $this->render('todo/form.html.twig', array(
+            'formTitle' => "Edit Todo"
+        ));
     }
     
     /**
@@ -51,4 +77,5 @@ class TodoController extends Controller
     public function detailsAction($id) {
         return;
     }
+
 }

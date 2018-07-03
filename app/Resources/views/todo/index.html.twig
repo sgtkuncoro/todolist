@@ -46,18 +46,10 @@
                                 <span class="badge {{ todo is defined ? (todo.priority == 'hight' ? 'badge-danger' : (todo.priority == 'medium' ? 'badge-warning' : 'badge-light') ) : '' }}">{{ todo is defined ? todo.priority : '' }}</span>
                             </td>
                             <td>
-                                <a href="#">
-                                    <i class="fa fa-fw fa-trash text-danger"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-fw fa-pencil text-info"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-fw fa-archive text-warning"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="fa fa-fw fa-check text-success"></i>
-                                </a>
+                                <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
+                                <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -88,12 +80,24 @@
                 $("#myModal").modal('show');
                 $(".modal-content").append('<div class="modal-footer">' +
                     '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-                    '<button type="button" class="btn btn-primary">Save</button>' +
+                    '<button type="button" onclick="addTodo()" class="btn btn-primary">Save</button>' +
                     '</div>')
             })
 
         })
+
     })
+
+    function addTodo() { 
+        $.post("/todo/act", $('#myform').serialize(), function (data, status) {
+           if(status=='success'){
+               $("#myModal").modal('hide')
+               location.reload();
+           }
+
+        })
+    }
+
 </script>
 
 {% endblock %}

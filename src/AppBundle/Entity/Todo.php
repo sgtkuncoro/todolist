@@ -52,17 +52,16 @@ class Todo
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="due_date", type="datetime")
+     * @ORM\Column(name="due_date", type="datetime", nullable=true)
      */
     private $dueDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="create_date", type="datetime")
+     * @ORM\Column(name="create_date", type="datetime", nullable=true)
      */
     private $createDate;
-
 
     /**
      * Get id
@@ -179,7 +178,7 @@ class Todo
      */
     public function setDueDate($dueDate)
     {
-        $this->dueDate = $dueDate;
+        $this->dueDate = new \DateTime();
 
         return $this;
     }
@@ -203,7 +202,7 @@ class Todo
      */
     public function setCreateDate($createDate)
     {
-        $this->createDate = $createDate;
+        $this->createDate = new \DateTime();
 
         return $this;
     }
