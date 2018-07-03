@@ -13,27 +13,31 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="name" class="col-form-label">Task:</label>
-                    <input type="text" name="name" class="form-control" id="name" required>
+                    <input type="text" name="name" class="form-control form-control-sm"  id="name" value="{{ data is defined ? data.name : '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="category" class="col-form-label">Category:</label>
-                        <input type="text" name="category" class="form-control" id="category" required>
+                        <input type="text" name="category" class="form-control form-control-sm" id="category" value="{{ data is defined ? data.category : '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Description:</label>
-                        <textarea class="form-control" name="description" id="desc" required></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="desc" required>{{ data is defined ? data.description : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="priority" class="col-form-label">Priority:</label>
-                        <select name="priority" class="form-control" id="priority" required>
-                            <option>Hight</option>
-                            <option>Middle</option>
-                            <option>Low</option>
+                        <select name="priority" class="form-control form-control-sm" id="priority" value="{{ data is defined ? data.priority : '' }}" required>
+                            {% for prioOpt in priorityOption %}
+                                {% set selected = '' %}
+                                {% if (prioOpt) == (data is defined ? data.priority : '') %}
+                                    {% set selected = 'selected' %}
+                                {% endif %}
+                                <option value="{{prioOpt}}" {{ selected }}>{{prioOpt}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="due_date" class="col-form-label">Due date:</label>
-                        <input type="datetime-local" class="form-control" name="due_date" id="due_date" required>
+                        <input type="datetime-local" class="dueDate form-control form-control-sm" name="due_date" value="{{ data is defined ? data.dueDate | date('Y-m-d\TH:i', 'T') : 's' }}" required>
                     </div>
                 </div>
                 

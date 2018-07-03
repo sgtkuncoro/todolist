@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TodoController extends Controller
 {
@@ -29,7 +30,33 @@ class TodoController extends Controller
      */
     public function addAction(){
         return $this->render('todo/form.html.twig', array(
-            'formTitle' => "Add Todo"
+            'formTitle' => "Add Todo",
+            'priorityOption' => array(
+                'Hight' => 'Hight',
+                'Middle' => 'Middle',
+                'Low' => 'Low'
+            )
+        ));
+    }
+
+    /**
+     * @Route("/todo/edit/{id}", name="todo_edit")
+     */
+    public function editAction($id=null, Request $request) {
+        $todo = $this->getDoctrine()
+                ->getRepository(Todo::class)
+                ->find($id);
+
+        
+        // looks for a single todo by its primary key (usually "id")
+        return $this->render('todo/form.html.twig', array(
+            'formTitle' => "Edit Todo",
+            'data'=> $todo,
+            'priorityOption' => array(
+                'Hight' => 'Hight',
+                'Middle' => 'Middle',
+                'Low' => 'Low'
+            )
         ));
     }
 
@@ -37,6 +64,7 @@ class TodoController extends Controller
      * @Route("/todo/act", name="todo_act")
      */
     public function actAction($id=null, Request $request) {
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $todo = new Todo();
@@ -58,19 +86,9 @@ class TodoController extends Controller
         $entityManager->flush();
 
         return new Response('Todo Saved');
-
        
     }
 
-    /**
-     * @Route("/todo/edit/{id}", name="todo_edit")
-     */
-    public function editAction($id, Request $request) {
-        return $this->render('todo/form.html.twig', array(
-            'formTitle' => "Edit Todo"
-        ));
-    }
-    
     /**
      * @Route("/todo/detais/{id}", name="todo_detail")
      */

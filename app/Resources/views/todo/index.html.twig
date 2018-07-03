@@ -19,7 +19,7 @@
         <br>
 
         <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-primary" id="btnAdd">
+            <button type="button" class="btnAdd btn btn-primary">
                 <i class="fa fa-fw fa-pencil"></i> Add
             </button>
         </div>
@@ -47,7 +47,7 @@
                             </td>
                             <td>
                                 <a href="#"><i class="fa fa-fw fa-trash text-danger"></i></a>
-                                <a href="#"><i class="fa fa-fw fa-pencil text-info"></i></a>
+                                <a href="javascript:void(0);" class="btnEdit" data-id="{{ todo is defined ? todo.id : '' }}"><i class="fa fa-fw fa-pencil text-info"></i></a>
                                 <a href="#"><i class="fa fa-fw fa-archive text-warning"></i></a>
                                 <a href="#"><i class="fa fa-fw fa-check text-success"></i></a>
                             </td>
@@ -73,31 +73,44 @@
 {% endblock %} {% block javascripts %}
 
 <script language="javascript">
-    $(document).ready(function () {
-        $("#btnAdd").click(function () {
-            $.get("/todo/add", function (content, status) {
-                $("#popForm").html(content);
-                $("#myModal").modal('show');
-                $(".modal-content").append('<div class="modal-footer">' +
-                    '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-                    '<button type="button" onclick="addTodo()" class="btn btn-primary">Save</button>' +
-                    '</div>')
-            })
-
+    $(".btnAdd").click(function () {
+        $.get("/todo/add", function (content, status) {
+            $("#popForm").html(content);
+            $("#myModal").modal('show');
+            $(".modal-content").append('<div class="modal-footer">' +
+                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+                '<button type="submit" onclick="addTodo()" class="btn btn-primary">Save</button>' +
+                '</div>')
         })
 
+    });
+
+    $(".btnEdit").click(function () {
+        $.get("/todo/edit/"+$(this).data('id'), function (content, status) {
+            $("#popForm").html(content);
+            $("#myModal").modal('show');
+            $(".modal-content").append('<div class="modal-footer">' +
+                '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+                '<button type="submit" onclick="editTodo()" class="btn btn-primary">Save</button>' +
+                '</div>')
+        })
     })
 
-    function addTodo() { 
-        $.post("/todo/act", $('#myform').serialize(), function (data, status) {
-           if(status=='success'){
-               $("#myModal").modal('hide')
-               location.reload();
-           }
+    function addTodo() {
+        $(this).submit(function(){
+            $.post("/todo/act", $('#myform').serialize(), function (data, status) {
+                if (status == 'success') {
+                    $("#myModal").modal('hide')
+                    location.reload();
+                } else {
+                    console.log("Gagal")
+                }
 
+            })
         })
     }
 
+    
 </script>
 
 {% endblock %}
